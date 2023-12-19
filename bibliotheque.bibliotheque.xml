@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><database name="bibliotheque" schema="bibliotheque" type="MariaDB - 10.4.27-MariaDB">
+   <tables>
+      <table catalog="bibliotheque" name="adherent" numRows="1" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="bibliotheque" column="adherent_id" foreignKey="FK_F9FD484B25F06C53" implied="false" onDeleteCascade="false" table="emprunt"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="numeroAdherent" nullable="false" remarks="" size="14" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="prenomAdherent" nullable="false" remarks="" size="50" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="nomAdherent" nullable="false" remarks="" size="60" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="mailAdherent" nullable="false" remarks="" size="60" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="NULL" digits="0" id="5" name="dateAdhesion" nullable="true" remarks="" size="10" type="DATE" typeCode="91"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="bibliotheque" name="blueray" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="bibliotheque" column="id" foreignKey="FK_36037521BF396750" implied="false" onDeleteCascade="true" table="media"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="realisateur" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="dureeMin" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="anneeSortie" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="dateLimite" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="bibliotheque" name="emprunt" numRows="1" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="NULL" digits="0" id="0" name="adherent_id" nullable="true" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="bibliotheque" column="id" foreignKey="FK_F9FD484B25F06C53" implied="false" onDeleteCascade="false" table="adherent"/>
+         </column>
+         <column autoUpdated="false" defaultValue="NULL" digits="0" id="1" name="media_id" nullable="true" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="bibliotheque" column="id" foreignKey="FK_F9FD484BEA9FDD75" implied="false" onDeleteCascade="false" table="media"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="numeroEmprunt" nullable="false" remarks="" size="12" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="dateEmprunt" nullable="false" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="dateRetourEstimee" nullable="false" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="NULL" digits="0" id="5" name="dateRetour" nullable="true" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <primaryKey column="numeroEmprunt" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="numeroEmprunt"/>
+         </index>
+         <index name="IDX_F9FD484B25F06C53" unique="false">
+            <column ascending="true" name="adherent_id"/>
+         </index>
+         <index name="IDX_F9FD484BEA9FDD75" unique="false">
+            <column ascending="true" name="media_id"/>
+         </index>
+      </table>
+      <table catalog="bibliotheque" name="livre" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="bibliotheque" column="id" foreignKey="FK_6DA2609DBF396750" implied="false" onDeleteCascade="true" table="media"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="isbn" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="auteur" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="nbPages" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="bibliotheque" name="magazine" numRows="2" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="bibliotheque" column="id" foreignKey="FK_CEFA4DB2BF396750" implied="false" onDeleteCascade="true" table="media"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="numero" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="datePublication" nullable="false" remarks="" size="10" type="DATE" typeCode="91"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="bibliotheque" name="media" numRows="3" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="bibliotheque" column="id" foreignKey="FK_36037521BF396750" implied="false" onDeleteCascade="true" table="blueray"/>
+            <child catalog="bibliotheque" column="media_id" foreignKey="FK_F9FD484BEA9FDD75" implied="false" onDeleteCascade="false" table="emprunt"/>
+            <child catalog="bibliotheque" column="id" foreignKey="FK_6DA2609DBF396750" implied="false" onDeleteCascade="true" table="livre"/>
+            <child catalog="bibliotheque" column="id" foreignKey="FK_CEFA4DB2BF396750" implied="false" onDeleteCascade="true" table="magazine"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="titre" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="dateCreation" nullable="false" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="dureeEmprunt" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="type" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="statut" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+   </tables>
+</database>
